@@ -52,13 +52,7 @@ extension LoginViewController{
         signInButton.configuration?.imagePadding = 8
         signInButton.setTitle("Sign in", for: [])
         signInButton.addTarget(self, action: #selector(signInTapped), for: .primaryActionTriggered)
-        
-//        signInButton.translatesAutoresizingMaskIntoConstraints = false
-//        signInButton.configuration = .filled()
-//        signInButton.configuration?.imagePadding = 8 // for indicator spacing
-//        signInButton.setTitle("Sign In", for: [])
-//        signInButton.addTarget(self, action: #selector(signInTapped), for: .primaryActionTriggered)
-//
+
         errorMessage.translatesAutoresizingMaskIntoConstraints = false
         errorMessage.textColor = .systemRed
         errorMessage.textAlignment = .center
