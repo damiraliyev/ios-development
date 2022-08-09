@@ -70,7 +70,6 @@ extension LoginViewController{
         errorMessage.textColor = .systemRed
         errorMessage.textAlignment = .center
         errorMessage.numberOfLines = 0
-        
     }
     private func layout(){
         view.addSubview(titleLabel)
