@@ -24,19 +24,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         loginViewController.delegate = self
         onboardingContainerViewController.delegate = self
         
-        let vc = mainViewController
-        vc.setStatusBar()
-        
-        UINavigationBar.appearance().isTranslucent = false
-        UINavigationBar.appearance().backgroundColor = appColor
-        
-        window?.rootViewController = vc
+        displayLogin()
         return true
     }
 
 }
 
 extension AppDelegate{
+    private func displayLogin(){
+        setRootViewController(loginViewController)
+    }
+    private func displayNextScreen(){
+        if LocalState.hasOnboarded{
+            prepMainView()
+            setRootViewController(mainViewController)
+        }else{
+            setRootViewController(onboardingContainerViewController)
+        }
+    }
+    private func prepMainView(){
+        mainViewController.setStatusBar()
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().backgroundColor = appColor
+    }
     func setRootViewController(_ vc: UIViewController, animated: Bool = true){
         guard animated, let window = self.window else{
             self.window?.rootViewController = vc
@@ -51,18 +61,14 @@ extension AppDelegate{
 
 extension AppDelegate: LoginViewControllerDelegate{
     func didLogin() {
-        if LocalState.hasOnboarded{
-            setRootViewController(mainViewController)
-        }else{
-            setRootViewController(onboardingContainerViewController)
-        }
-        
+        displayNextScreen()
     }
 }
 
 extension AppDelegate: OnboardingContainerViewControlledDelegate{
     func didFinishOnboarding() {
         LocalState.hasOnboarded = true
+        prepMainView()
         setRootViewController(mainViewController)
     }
 }
