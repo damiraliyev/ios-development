@@ -10,6 +10,8 @@
 		68038EC0289B6FA900DA975E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68038EBF289B6FA900DA975E /* LoginView.swift */; };
 		68038EC4289BD31A00DA975E /* OnboardingContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68038EC3289BD31A00DA975E /* OnboardingContainerViewController.swift */; };
 		680B7B0028AA1B3100759C99 /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680B7AFF28AA1B3100759C99 /* AccountTests.swift */; };
+		680B7B0228AA4DFA00759C99 /* SkeletonLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680B7B0128AA4DFA00759C99 /* SkeletonLoadable.swift */; };
+		680B7B0428AA4EC600759C99 /* SketelonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680B7B0328AA4EC600759C99 /* SketelonCell.swift */; };
 		6862E394289CC88000BA2B9B /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6862E393289CC88000BA2B9B /* OnboardingViewController.swift */; };
 		6862E398289D16B900BA2B9B /* DummyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6862E397289D16B900BA2B9B /* DummyViewController.swift */; };
 		6862E39D289D290E00BA2B9B /* LocalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6862E39C289D290E00BA2B9B /* LocalState.swift */; };
@@ -48,6 +50,8 @@
 		68038EBF289B6FA900DA975E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		68038EC3289BD31A00DA975E /* OnboardingContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerViewController.swift; sourceTree = "<group>"; };
 		680B7AFF28AA1B3100759C99 /* AccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
+		680B7B0128AA4DFA00759C99 /* SkeletonLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonLoadable.swift; sourceTree = "<group>"; };
+		680B7B0328AA4EC600759C99 /* SketelonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketelonCell.swift; sourceTree = "<group>"; };
 		6862E393289CC88000BA2B9B /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		6862E397289D16B900BA2B9B /* DummyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyViewController.swift; sourceTree = "<group>"; };
 		6862E39C289D290E00BA2B9B /* LocalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalState.swift; sourceTree = "<group>"; };
@@ -227,6 +231,8 @@
 			isa = PBXGroup;
 			children = (
 				68DC2C0E28A2555000F6218D /* AccountSummaryCell.swift */,
+				680B7B0128AA4DFA00759C99 /* SkeletonLoadable.swift */,
+				680B7B0328AA4EC600759C99 /* SketelonCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -361,6 +367,8 @@
 				68DC2C0728A20BD300F6218D /* AccountSummaryViewController.swift in Sources */,
 				68B3DFFF289A997700BDBDD8 /* AppDelegate.swift in Sources */,
 				68038EC4289BD31A00DA975E /* OnboardingContainerViewController.swift in Sources */,
+				680B7B0228AA4DFA00759C99 /* SkeletonLoadable.swift in Sources */,
+				680B7B0428AA4EC600759C99 /* SketelonCell.swift in Sources */,
 				68FE23F128A66AB0003FAB95 /* AccountSummaryViewController+Networking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
