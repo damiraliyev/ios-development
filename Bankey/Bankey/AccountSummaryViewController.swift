@@ -12,6 +12,7 @@ class AccountSummaryViewController: UIViewController{
     
     let tableView = UITableView()
     let headerView = AccountSummaryHeaderView(frame: .zero)
+    let refreshControl = UIRefreshControl()
     
     
     lazy var logoutBarButtonItem: UIBarButtonItem = {
@@ -32,7 +33,8 @@ extension AccountSummaryViewController{
         setupNavigationBar()
         setupTableView()
         setupTableHeaderView()
-        fetchDataAndLoadViews()
+        setupRefreshControl()
+        fetchData()
     }
     
     private func setupTableView(){
@@ -66,6 +68,12 @@ extension AccountSummaryViewController{
         navigationItem.rightBarButtonItem = logoutBarButtonItem
     }
     
+    func setupRefreshControl(){
+        refreshControl.tintColor = appColor
+        refreshControl.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+    }
+    
 //    private func setupHeaderView(){
 //        let header = AccountSummaryHeaderView(frame: .zero)
 //        var size = header.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
@@ -94,19 +102,12 @@ extension AccountSummaryViewController: UITableViewDelegate{
         
     }
 }
-//MARK: Action
-
-extension AccountSummaryViewController{
-    @objc func logoutTapped(){
-        NotificationCenter.default.post(name: NSNotification.Name.logout, object: nil)
-    }
-}
-
 // MARK: - Networking
 extension AccountSummaryViewController {
-    private func fetchDataAndLoadViews() {
+    private func fetchData() {
         let group = DispatchGroup()
         
+//        let userId = String(Int.random(in: 1..<4))
         group.enter()
         fetchProfile(forUserId: "1") { result in
             switch result {
@@ -152,3 +153,19 @@ extension AccountSummaryViewController {
         headerView.configure(viewModel: vm)
     }
 }
+
+//MARK: Action
+
+extension AccountSummaryViewController{
+    @objc func logoutTapped(){
+        NotificationCenter.default.post(name: NSNotification.Name.logout, object: nil)
+    }
+    
+    @objc func refreshContent(){
+        fetchData()
+        DispatchQueue.main.async {
+            self.tableView.refreshControl?.endRefreshing()
+        }
+    }
+}
+
