@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		68038EC0289B6FA900DA975E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68038EBF289B6FA900DA975E /* LoginView.swift */; };
 		68038EC4289BD31A00DA975E /* OnboardingContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68038EC3289BD31A00DA975E /* OnboardingContainerViewController.swift */; };
+		680B7B0028AA1B3100759C99 /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680B7AFF28AA1B3100759C99 /* AccountTests.swift */; };
 		6862E394289CC88000BA2B9B /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6862E393289CC88000BA2B9B /* OnboardingViewController.swift */; };
 		6862E398289D16B900BA2B9B /* DummyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6862E397289D16B900BA2B9B /* DummyViewController.swift */; };
 		6862E39D289D290E00BA2B9B /* LocalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6862E39C289D290E00BA2B9B /* LocalState.swift */; };
@@ -20,6 +21,7 @@
 		6872BA3228A3B070008FA4B3 /* CurrencyFormatterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6872BA3128A3B070008FA4B3 /* CurrencyFormatterTest.swift */; };
 		689D80E128A11D8D005CF5A1 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689D80E028A11D8D005CF5A1 /* UIViewController+Utils.swift */; };
 		689D80E328A11F0F005CF5A1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689D80E228A11F0F005CF5A1 /* MainViewController.swift */; };
+		68AA546A28AA1849000487E3 /* ProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68AA546928AA1849000487E3 /* ProfileTests.swift */; };
 		68B3DFFF289A997700BDBDD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B3DFFE289A997700BDBDD8 /* AppDelegate.swift */; };
 		68B3E003289A997700BDBDD8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B3E002289A997700BDBDD8 /* LoginViewController.swift */; };
 		68B3E008289A997900BDBDD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68B3E007289A997900BDBDD8 /* Assets.xcassets */; };
@@ -45,6 +47,7 @@
 /* Begin PBXFileReference section */
 		68038EBF289B6FA900DA975E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		68038EC3289BD31A00DA975E /* OnboardingContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerViewController.swift; sourceTree = "<group>"; };
+		680B7AFF28AA1B3100759C99 /* AccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 		6862E393289CC88000BA2B9B /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		6862E397289D16B900BA2B9B /* DummyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyViewController.swift; sourceTree = "<group>"; };
 		6862E39C289D290E00BA2B9B /* LocalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalState.swift; sourceTree = "<group>"; };
@@ -57,6 +60,7 @@
 		6872BA3128A3B070008FA4B3 /* CurrencyFormatterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormatterTest.swift; sourceTree = "<group>"; };
 		689D80E028A11D8D005CF5A1 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
 		689D80E228A11F0F005CF5A1 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		68AA546928AA1849000487E3 /* ProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTests.swift; sourceTree = "<group>"; };
 		68B3DFFB289A997700BDBDD8 /* Bankey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bankey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68B3DFFE289A997700BDBDD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68B3E002289A997700BDBDD8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -143,9 +147,27 @@
 		6872BA2928A3B055008FA4B3 /* BankeyUnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				6872BA3128A3B070008FA4B3 /* CurrencyFormatterTest.swift */,
+				68AA546828AA1829000487E3 /* AccountSummary */,
+				68AA546728AA1815000487E3 /* Utils */,
 			);
 			path = BankeyUnitTests;
+			sourceTree = "<group>";
+		};
+		68AA546728AA1815000487E3 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6872BA3128A3B070008FA4B3 /* CurrencyFormatterTest.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		68AA546828AA1829000487E3 /* AccountSummary */ = {
+			isa = PBXGroup;
+			children = (
+				68AA546928AA1849000487E3 /* ProfileTests.swift */,
+				680B7AFF28AA1B3100759C99 /* AccountTests.swift */,
+			);
+			path = AccountSummary;
 			sourceTree = "<group>";
 		};
 		68B3DFF2289A997700BDBDD8 = {
@@ -312,6 +334,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6872BA3228A3B070008FA4B3 /* CurrencyFormatterTest.swift in Sources */,
+				680B7B0028AA1B3100759C99 /* AccountTests.swift in Sources */,
+				68AA546A28AA1849000487E3 /* ProfileTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
