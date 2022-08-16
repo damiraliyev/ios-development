@@ -10,6 +10,16 @@ class AccountSummaryViewController: UIViewController{
     var headerViewModel = AccountSummaryHeaderView.ViewModel(welcomeMessage: "Welcome", name: "", date: Date())
     var accountCellViewModels: [AccountSummaryCell.ViewModel] = []
     
+    //Networking
+    var profileManager: ProfileManageable = ProfileManager()
+    
+//    Error alert
+    lazy var errorAlert: UIAlertController  = {
+        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        return alert
+    }()
+    
     let tableView = UITableView()
     let headerView = AccountSummaryHeaderView(frame: .zero)
     let refreshControl = UIRefreshControl()
@@ -84,14 +94,14 @@ extension AccountSummaryViewController{
         configureTableCells(with: accounts)
     }
     
-//    private func setupHeaderView(){
-//        let header = AccountSummaryHeaderView(frame: .zero)
-//        var size = header.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-//        size.width = UIScreen.main.bounds.width
-//        header.frame.size = size
-//
-//        tableView.tableHeaderView = header
-//    }
+    //    private func setupHeaderView(){
+    //        let header = AccountSummaryHeaderView(frame: .zero)
+    //        var size = header.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+    //        size.width = UIScreen.main.bounds.width
+    //        header.frame.size = size
+    //
+    //        tableView.tableHeaderView = header
+    //    }
 }
 extension AccountSummaryViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -124,9 +134,19 @@ extension AccountSummaryViewController {
     private func fetchData() {
         let group = DispatchGroup()
         
-//        let userId = String(Int.random(in: 1..<4))
+        //        let userId = String(Int.random(in: 1..<4))
+        fetchProfiles(group: group, userId: "1")
+        fetchAccounts(group: group, userId: "1")
+        
+        group.notify(queue: .main){
+            self.reloadView()
+        }
+        
+        
+    }
+    private func fetchProfiles(group: DispatchGroup, userId: String){
         group.enter()
-        fetchProfile(forUserId: "1") { result in
+        profileManager.fetchProfile(forUserId: userId) { result in
             switch result {
             case .success(let profile):
                 self.profile = profile
@@ -135,9 +155,11 @@ extension AccountSummaryViewController {
             }
             group.leave()
         }
-        
+    }
+    
+    private func fetchAccounts(group: DispatchGroup, userId: String){
         group.enter()
-        fetchAccounts(forUserId: "1") { result in
+        fetchAccounts(forUserId: userId) { result in
             switch result {
             case .success(let accounts):
                 self.accounts = accounts
@@ -146,27 +168,25 @@ extension AccountSummaryViewController {
             }
             group.leave()
         }
-        
-        group.notify(queue: .main){
-            self.tableView.refreshControl?.endRefreshing()
-            
-            guard let profile = self.profile else{ return }
-            self.configureTableHeaderView(with: profile)
-            self.configureTableCells(with: self.accounts)
-            self.isLoaded = true
-            
-            self.tableView.reloadData()
-        }
-        
-        
     }
+    private func reloadView(){
+        self.tableView.refreshControl?.endRefreshing()
+        
+        guard let profile = self.profile else{ return }
+        self.configureTableHeaderView(with: profile)
+        self.configureTableCells(with: self.accounts)
+        self.isLoaded = true
+        
+        self.tableView.reloadData()
+    }
+    
     private func configureTableCells(with accounts: [Account]) {
-            accountCellViewModels = accounts.map {
-                AccountSummaryCell.ViewModel(accountType: $0.type,
-                                             accountName: $0.name,
-                                             balance: $0.amount)
-            }
+        accountCellViewModels = accounts.map {
+            AccountSummaryCell.ViewModel(accountType: $0.type,
+                                         accountName: $0.name,
+                                         balance: $0.amount)
         }
+    }
     
     private func configureTableHeaderView(with profile: Profile) {
         let vm = AccountSummaryHeaderView.ViewModel(welcomeMessage: "Good morning,",
@@ -175,6 +195,11 @@ extension AccountSummaryViewController {
         headerView.configure(viewModel: vm)
     }
     private func displayError(_ error: NetworkError){
+        let titleAndMessage = titleAndMessage(for: error)
+        self.showErrorAlert(title: titleAndMessage.0, message: titleAndMessage.1)
+    }
+    
+    private func titleAndMessage(for error: NetworkError) -> (String, String){
         let title: String
         let message: String
         switch error{
@@ -185,13 +210,15 @@ extension AccountSummaryViewController {
             title = "Decoding Error"
             message = "We couldn't process your request. Please,try again."
         }
-        self.showErrorAlert(title: title, message: message)
+        return (title, message)
     }
     
     private func showErrorAlert(title: String, message: String){
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
+//        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        errorAlert.title = title
+        errorAlert.message = message
+        present(errorAlert, animated: true, completion: nil)
     }
 }
 
@@ -215,3 +242,12 @@ extension AccountSummaryViewController{
     }
 }
 
+extension AccountSummaryViewController{
+    func titleAndMessageForTest(for error: NetworkError) -> (String, String){
+        return titleAndMessage(for: error)
+    }
+    
+    func forceFetchProfile(){
+        fetchProfiles(group: DispatchGroup(), userId: "1")
+    }
+}
