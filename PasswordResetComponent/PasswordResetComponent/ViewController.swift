@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  Password
+//  PasswordResetComponent
 //
 //  Created by Damir Aliyev on 17.08.2022.
 //
