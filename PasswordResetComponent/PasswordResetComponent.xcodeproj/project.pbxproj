@@ -11,6 +11,7 @@
 		68A1F72B28AC9C9200B835C2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A1F72A28AC9C9200B835C2 /* ViewController.swift */; };
 		68A1F73028AC9C9200B835C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68A1F72F28AC9C9200B835C2 /* Assets.xcassets */; };
 		68A1F73328AC9C9200B835C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68A1F73128AC9C9200B835C2 /* LaunchScreen.storyboard */; };
+		68A1F73C28ACA35000B835C2 /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A1F73B28ACA35000B835C2 /* PasswordTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		68A1F72F28AC9C9200B835C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		68A1F73228AC9C9200B835C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		68A1F73428AC9C9200B835C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		68A1F73B28ACA35000B835C2 /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,13 +54,22 @@
 		68A1F72528AC9C9200B835C2 /* PasswordResetComponent */ = {
 			isa = PBXGroup;
 			children = (
+				68A1F73A28ACA30D00B835C2 /* Files */,
 				68A1F72628AC9C9200B835C2 /* AppDelegate.swift */,
 				68A1F72A28AC9C9200B835C2 /* ViewController.swift */,
+				68A1F73B28ACA35000B835C2 /* PasswordTextField.swift */,
+			);
+			path = PasswordResetComponent;
+			sourceTree = "<group>";
+		};
+		68A1F73A28ACA30D00B835C2 /* Files */ = {
+			isa = PBXGroup;
+			children = (
 				68A1F72F28AC9C9200B835C2 /* Assets.xcassets */,
 				68A1F73128AC9C9200B835C2 /* LaunchScreen.storyboard */,
 				68A1F73428AC9C9200B835C2 /* Info.plist */,
 			);
-			path = PasswordResetComponent;
+			name = Files;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,6 +144,7 @@
 			files = (
 				68A1F72B28AC9C9200B835C2 /* ViewController.swift in Sources */,
 				68A1F72728AC9C9200B835C2 /* AppDelegate.swift in Sources */,
+				68A1F73C28ACA35000B835C2 /* PasswordTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
