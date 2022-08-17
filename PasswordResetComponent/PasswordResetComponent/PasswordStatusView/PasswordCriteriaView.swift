@@ -86,6 +86,7 @@ extension PasswordCriteriaView{
         ])
         
         imageView.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .horizontal)
+//        imageView.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .vertical)
         label.setContentHuggingPriority(UILayoutPriority.defaultLow, for: .horizontal)
     }
 }
