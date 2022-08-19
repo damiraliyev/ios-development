@@ -17,9 +17,9 @@ class PasswordStatusView: UIView{
     let uppercaseCriteriaView = PasswordCriteriaView(text: "uppercase letter (A-Z)")
     let lowercaseCriteriaView = PasswordCriteriaView(text: "lowercase letter (a-z)")
     let digitCriteriaView = PasswordCriteriaView(text: "digit (0-9)")
-    let specialCharacterView = PasswordCriteriaView(text: "special character (e.g.!@#$%^&)")
+    let specialCharacterView = PasswordCriteriaView(text: "special character (.,@:?!()$\\/#")
     
-    private var shouldResetCriteria = true
+    var shouldResetCriteria = true
     
     
     override init(frame: CGRect){
@@ -108,6 +108,37 @@ extension PasswordStatusView{
             lowercaseMet ? lowercaseCriteriaView.isCriteriaMet = true : lowercaseCriteriaView.reset()
             digitMet ? digitCriteriaView.isCriteriaMet = true : digitCriteriaView.reset()
             specialCharacterMet ? specialCharacterView.isCriteriaMet = true : specialCharacterView.reset()
+        } else{
+            lengthCriteriaView.isCriteriaMet = lengthAndNoSpaceMet
+            uppercaseCriteriaView.isCriteriaMet = uppercaseMet
+            lowercaseCriteriaView.isCriteriaMet = lowercaseMet
+            digitCriteriaView.isCriteriaMet = digitMet
+            specialCharacterView.isCriteriaMet = specialCharacterMet
         }
     }
+    
+    func validate(_ text: String) -> Bool{
+        let uppercaseMet = PasswordCriteria.uppercaseMet(text)
+        let lowercaseMet = PasswordCriteria.lowercaseMet(text)
+        let digitMet = PasswordCriteria.digitMet(text)
+        let specialCharacterMet = PasswordCriteria.specialCharacterMet(text)
+
+        let requirements = [uppercaseMet, lowercaseMet, digitMet, specialCharacterMet]
+        let lengthAndNoSpaceMet = PasswordCriteria.lengthAndNoSpaceMet(text)
+        let metCriteria = requirements.filter{ $0 }
+        
+        if lengthAndNoSpaceMet && metCriteria.count >= 3{
+            return true
+        }
+        return false
+    }
+    
+    func reset(){
+        lengthCriteriaView.reset()
+        uppercaseCriteriaView.reset()
+        lowercaseCriteriaView.reset()
+        digitCriteriaView.reset()
+        specialCharacterView.reset()
+    }
+    
 }
