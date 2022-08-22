@@ -146,16 +146,20 @@ extension PasswordTextField: UITextFieldDelegate{
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("Return")
         textField.endEditing(true)
         return true
     }
 }
 
 
-extension PasswordTextField{
-    func validate() -> Bool{
-        if let customValidation = customValidation, let customValidationResult = customValidation(text), customValidationResult.0 == false{
+// typealias CustomValidation = (_ textValue: String?) -> (Bool, String)?
+
+// MARK: - Validation
+extension PasswordTextField {
+    func validate() -> Bool {
+        if let customValidation = customValidation,
+            let customValidationResult = customValidation(text),
+            customValidationResult.0 == false {
             showError(customValidationResult.1)
             return false
         }
@@ -163,12 +167,12 @@ extension PasswordTextField{
         return true
     }
     
-    func showError(_ errorMessage: String){
+    private func showError(_ errorMessage: String) {
         errorLabel.isHidden = false
         errorLabel.text = errorMessage
     }
-    
-    func clearError(){
+
+    private func clearError() {
         errorLabel.isHidden = true
         errorLabel.text = ""
     }
