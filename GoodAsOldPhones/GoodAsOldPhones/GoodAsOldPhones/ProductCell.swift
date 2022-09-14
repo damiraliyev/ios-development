@@ -14,6 +14,7 @@ class ProductCell: UITableViewCell {
         
         let imageName: String
         let productName: String
+        let fullScreenImage: String
     }
     
     static let reuseId = "ProducCellId"

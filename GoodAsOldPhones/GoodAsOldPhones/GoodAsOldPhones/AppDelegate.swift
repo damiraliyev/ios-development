@@ -29,7 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationController.viewControllers = [MainViewController()]
         
         let appearance = UINavigationBarAppearance()
-//        appearance.backgroundColor = .systemGray6
         navigationController.navigationBar.scrollEdgeAppearance = appearance
     }
     

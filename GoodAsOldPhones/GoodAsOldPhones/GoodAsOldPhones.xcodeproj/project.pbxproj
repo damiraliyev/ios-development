@@ -14,6 +14,8 @@
 		685E62AB28D187E90074ED43 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685E62AA28D187E90074ED43 /* ProductsViewController.swift */; };
 		685E62AD28D1881C0074ED43 /* UsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685E62AC28D1881C0074ED43 /* UsViewController.swift */; };
 		685E62AF28D194BB0074ED43 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685E62AE28D194BB0074ED43 /* ProductCell.swift */; };
+		685E62B128D2194D0074ED43 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685E62B028D2194D0074ED43 /* ProductViewController.swift */; };
+		685E62B328D229820074ED43 /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685E62B228D229820074ED43 /* ContactView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		685E62AA28D187E90074ED43 /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
 		685E62AC28D1881C0074ED43 /* UsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsViewController.swift; sourceTree = "<group>"; };
 		685E62AE28D194BB0074ED43 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		685E62B028D2194D0074ED43 /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
+		685E62B228D229820074ED43 /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,8 @@
 				685E62A928D1872F0074ED43 /* Files */,
 				685E62AC28D1881C0074ED43 /* UsViewController.swift */,
 				685E62AE28D194BB0074ED43 /* ProductCell.swift */,
+				685E62B028D2194D0074ED43 /* ProductViewController.swift */,
+				685E62B228D229820074ED43 /* ContactView.swift */,
 			);
 			path = GoodAsOldPhones;
 			sourceTree = "<group>";
@@ -148,6 +154,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				685E62B128D2194D0074ED43 /* ProductViewController.swift in Sources */,
+				685E62B328D229820074ED43 /* ContactView.swift in Sources */,
 				685E62AD28D1881C0074ED43 /* UsViewController.swift in Sources */,
 				685E62AB28D187E90074ED43 /* ProductsViewController.swift in Sources */,
 				685E62AF28D194BB0074ED43 /* ProductCell.swift in Sources */,

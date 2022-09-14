@@ -12,9 +12,15 @@ class ProductsViewController: UIViewController {
     
     typealias Model = ProductCell.Model
     
+    let productViewController = ProductViewController()
+    
     let tableView = UITableView()
-//    Model(, productName: "1907 Wall Set"), Model(imageView: "image-cell2", productName: "1921 Dial Phone"), Model(imageView: "image-cell3", productName: "1937 Desk Set"), Model(imageView: "image-cell4", productName: "1984 Moto Portable")]
-    let products: [ProductCell.Model] = [Model(imageName: "image-cell1", productName: "1907 Wall Set"), Model(imageName: "image-cell2", productName: "1921 Dial Phone"), Model(imageName: "image-cell3", productName: "1937 Desk Set"), Model(imageName: "image-cell4", productName: "1984 Moto Portable")]
+    
+    let products: [ProductCell.Model] = [
+        Model(imageName: "image-cell1", productName: "1907 Wall Set", fullScreenImage: "phone-fullscreen1"),
+        Model(imageName: "image-cell2", productName: "1921 Dial Phone", fullScreenImage: "phone-fullscreen2"),
+        Model(imageName: "image-cell3", productName: "1937 Desk Set", fullScreenImage: "phone-fullscreen3"),
+        Model(imageName: "image-cell4", productName: "1984 Moto Portable", fullScreenImage: "phone-fullscreen4")]
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray5
@@ -57,7 +63,10 @@ class ProductsViewController: UIViewController {
 }
 
 extension ProductsViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        productViewController.setProductInformation(productName: products[indexPath.row].productName, imageName: products[indexPath.row].fullScreenImage)
+        navigationController?.pushViewController(productViewController, animated: true)
+    }
 }
 
 extension ProductsViewController: UITableViewDataSource {
