@@ -53,7 +53,7 @@ class CalculatorProgrammaticallyTests: XCTestCase {
     func testCalculateResultAdd() throws {
         vc.model.containerVar = 15
         vc.model.digitString = "27"
-        vc.model.tuple.0 = "+"
+        vc.model.sign = "+"
         
         let result = vc.model.calculateResult()
         
@@ -63,7 +63,7 @@ class CalculatorProgrammaticallyTests: XCTestCase {
     func testCalculateResultSubtract() throws {
         vc.model.containerVar = 15
         vc.model.digitString = "27"
-        vc.model.tuple.0 = "-"
+        vc.model.sign = "-"
         
         let result = vc.model.calculateResult()
         
@@ -74,7 +74,7 @@ class CalculatorProgrammaticallyTests: XCTestCase {
     func testCalculateResultMultiply() throws {
         vc.model.containerVar = 15
         vc.model.digitString = "27"
-        vc.model.tuple.0 = "x"
+        vc.model.sign = "x"
         
         let result = vc.model.calculateResult()
         
@@ -85,7 +85,7 @@ class CalculatorProgrammaticallyTests: XCTestCase {
     func testCalculateResultDivide() throws {
         vc.model.containerVar = 45
         vc.model.digitString = "15"
-        vc.model.tuple.0 = "÷"
+        vc.model.sign = "÷"
         
         let result = vc.model.calculateResult()
         

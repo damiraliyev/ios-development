@@ -50,6 +50,8 @@ class CalculatorViewController: UIViewController {
     let dotButton = makeButton(withText: ".", color: .darkGray)
     let equalsButton = makeButton(withText: "=", color: .systemOrange)
     
+    var parentStackViewTopAnchor = NSLayoutConstraint()
+    
     var digitButtons = [UIButton]()
     var oneActionOperations = [UIButton]()
     var operationButtons = [UIButton]()
@@ -57,6 +59,8 @@ class CalculatorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerForNotificationChanges()
+        
         digitButtons += [button0, button1, button2, button3, button4, button5, button6, button7, button8, button9]
         oneActionOperations += [clearButton, changeSignButton, percentButton, dotButton]
         operationButtons += [addButton, subtractButton, multiplyButton, divisionButton]
@@ -65,14 +69,16 @@ class CalculatorViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print(dotButton.bounds.size.width)
-
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
 
         parentStackView.setCustomSpacing(20, after: displayLabel)
+    }
+    
+    func registerForNotificationChanges() {
+        NotificationCenter.default.addObserver(self, selector: #selector(CalculatorViewController.rotated), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
     
     func setup() {
@@ -126,13 +132,13 @@ class CalculatorViewController: UIViewController {
         
         
         NSLayoutConstraint.activate([
-            
-            parentStackView.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 15),
+//            parentStackView.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 15),
             parentStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             parentStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             parentStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-        
+        parentStackViewTopAnchor = parentStackView.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 15)
+        parentStackViewTopAnchor.isActive = true
     }
     
 
@@ -158,6 +164,27 @@ class CalculatorViewController: UIViewController {
         
         return rootString
     }
+    
+    @objc func rotated() {
+        
+        if UIDevice.current.orientation.isLandscape {
+            parentStackViewTopAnchor.isActive = false
+            parentStackViewTopAnchor = parentStackView.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 5)
+            parentStackViewTopAnchor.isActive = true
+            
+            //This function will add engineering part. This part was done for practicing creating UI, doesn't have functionality for now.
+            addEngineeringPart()
+            
+        } else {
+            parentStackViewTopAnchor.isActive = false
+            parentStackViewTopAnchor = parentStackView.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 15)
+            parentStackViewTopAnchor.isActive = true
+            
+            removeEngineeringPart()
+        }
+        print("rotated!")
+    }
+    
     
     }
 
@@ -196,4 +223,141 @@ func makeLabel(withText text: String) -> UILabel {
     label.adjustsFontSizeToFitWidth = true
 
     return label
+}
+
+
+
+
+extension CalculatorViewController {
+    func addEngineeringPart() {
+        firstStackView.insertArrangedSubview(bracketButtonOpen, at: 0)
+        firstStackView.insertArrangedSubview(bracketButtonClose, at: 1)
+        firstStackView.insertArrangedSubview(mcButton, at: 2)
+        firstStackView.insertArrangedSubview(mPlusButton, at: 3)
+        firstStackView.insertArrangedSubview(mMinusbracketButton, at: 4)
+        firstStackView.insertArrangedSubview(mrButton, at: 5)
+        
+        secondStackView.insertArrangedSubview(secondButton, at: 0)
+        secondStackView.insertArrangedSubview(squareButton, at: 1)
+        secondStackView.insertArrangedSubview(cubeButton, at: 2)
+        secondStackView.insertArrangedSubview(xInYDegreeButton, at: 3)
+        secondStackView.insertArrangedSubview(yInXDegreeButton, at: 4)
+        secondStackView.insertArrangedSubview(twoInXDegreeButton, at: 5)
+        
+        
+        thirdStackView.insertArrangedSubview(oneDivideXButton, at: 0)
+        thirdStackView.insertArrangedSubview(squareRootButton, at: 1)
+        thirdStackView.insertArrangedSubview(cubeRootXButton, at: 2)
+        thirdStackView.insertArrangedSubview(yRootButton, at: 3)
+        thirdStackView.insertArrangedSubview(logYButton, at: 4)
+        thirdStackView.insertArrangedSubview(log2Button, at: 5)
+        
+        
+        fourthStackView.insertArrangedSubview(xFactorialButton, at: 0)
+        fourthStackView.insertArrangedSubview(sinButton, at: 1)
+        fourthStackView.insertArrangedSubview(cosButton, at: 2)
+        fourthStackView.insertArrangedSubview(tanButton, at: 3)
+        fourthStackView.insertArrangedSubview(eButton, at: 4)
+        fourthStackView.insertArrangedSubview(eeButton, at: 5)
+        
+       
+        fifthStackView.insertArrangedSubview(radButton, at: 0)
+        fifthStackView.insertArrangedSubview(sinhButton, at: 1)
+        fifthStackView.insertArrangedSubview(coshButton, at: 2)
+    }
+    
+    
+    func removeEngineeringPart() {
+        // first Stack View
+        firstStackView.removeArrangedSubview(bracketButtonOpen)
+        bracketButtonOpen.removeFromSuperview()
+        
+        firstStackView.removeArrangedSubview(bracketButtonClose)
+        bracketButtonClose.removeFromSuperview()
+        
+        firstStackView.removeArrangedSubview(mcButton)
+        mcButton.removeFromSuperview()
+        
+        firstStackView.removeArrangedSubview(mPlusButton)
+        mPlusButton.removeFromSuperview()
+        
+        firstStackView.removeArrangedSubview(mMinusbracketButton)
+        mMinusbracketButton.removeFromSuperview()
+        
+        firstStackView.removeArrangedSubview(mrButton)
+        mrButton.removeFromSuperview()
+        
+        
+        // second Stack View
+        secondStackView.removeArrangedSubview(secondButton)
+        secondButton.removeFromSuperview()
+        
+        secondStackView.removeArrangedSubview(squareButton)
+        squareButton.removeFromSuperview()
+        
+        secondStackView.removeArrangedSubview(cubeButton)
+        cubeButton.removeFromSuperview()
+        
+        secondStackView.removeArrangedSubview(xInYDegreeButton)
+        xInYDegreeButton.removeFromSuperview()
+        
+        secondStackView.removeArrangedSubview(yInXDegreeButton)
+        yInXDegreeButton.removeFromSuperview()
+        
+        secondStackView.removeArrangedSubview(twoInXDegreeButton)
+        twoInXDegreeButton.removeFromSuperview()
+        
+        // third Stack View
+        thirdStackView.removeArrangedSubview(oneDivideXButton)
+        oneDivideXButton.removeFromSuperview()
+        
+        thirdStackView.removeArrangedSubview(squareRootButton)
+        squareRootButton.removeFromSuperview()
+        
+        thirdStackView.removeArrangedSubview(cubeRootXButton)
+        cubeRootXButton.removeFromSuperview()
+        
+        thirdStackView.removeArrangedSubview(yRootButton)
+        yRootButton.removeFromSuperview()
+        
+        thirdStackView.removeArrangedSubview(logYButton)
+        logYButton.removeFromSuperview()
+        
+        thirdStackView.removeArrangedSubview(log2Button)
+        log2Button.removeFromSuperview()
+        
+        
+        // fourth Stack View
+        fourthStackView.removeArrangedSubview(xFactorialButton)
+        xFactorialButton.removeFromSuperview()
+        
+        fourthStackView.removeArrangedSubview(sinButton)
+        sinButton.removeFromSuperview()
+        
+        fourthStackView.removeArrangedSubview(cosButton)
+        cosButton.removeFromSuperview()
+        
+        fourthStackView.removeArrangedSubview(tanButton)
+        tanButton.removeFromSuperview()
+        
+        fourthStackView.removeArrangedSubview(eButton)
+        eButton.removeFromSuperview()
+        
+        fourthStackView.removeArrangedSubview(eeButton)
+        eeButton.removeFromSuperview()
+        
+        
+        
+        // fifth Stack View
+        fifthStackView.removeArrangedSubview(radButton)
+        radButton.removeFromSuperview()
+        
+        fifthStackView.removeArrangedSubview(sinhButton)
+        sinhButton.removeFromSuperview()
+        
+        fifthStackView.removeArrangedSubview(coshButton)
+        coshButton.removeFromSuperview()
+        
+    }
+    
 }

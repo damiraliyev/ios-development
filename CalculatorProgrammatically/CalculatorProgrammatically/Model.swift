@@ -12,7 +12,7 @@ import UIKit
 struct Model {
     var digitString = ""
     var containerVar = 0.0
-    var tuple = (".", "0")
+    var sign = "."
     var count = 0
     
     mutating func performOperation(_ sender: String?) -> Double {
@@ -21,11 +21,8 @@ struct Model {
         if count > 1 {
             let result = calculateResult()
             digitString = String(result)
-            tuple.0 = "."
-            tuple.1 = "0"
+            sign = "."
             count = 1
-
-            
         }
         
         if let operationText = sender {
@@ -33,44 +30,27 @@ struct Model {
             
             if operationText == "+"{
                 if !digitString.isEmpty {
-                    containerVar = Double(digitString)!
-                    digitString = ""
-                    tuple.0 = "+"
-                    print(containerVar)
-                    print("_------------------")
-                    print(count)
+                    saveFirstAndSign(firstOperand: digitString, sign: "+")
                 }
             }
             
             if operationText == "-"{
                 if !digitString.isEmpty {
-                    containerVar = Double(digitString)!
-                    digitString = ""
-                    tuple.0 = "-"
-                    
+                    saveFirstAndSign(firstOperand: digitString, sign: "-")
                 }
             }
             
             if operationText == "x"{
                 if !digitString.isEmpty {
-                    containerVar = Double(digitString)!
-                    digitString = ""
-                    tuple.0 = "x"
-                    
+                    saveFirstAndSign(firstOperand: digitString, sign: "x")
                 }
             }
             
             if operationText == "÷"{
                 if !digitString.isEmpty {
-                    containerVar = Double(digitString)!
-                    digitString = ""
-                    tuple.0 = "÷"
-                    print(containerVar)
-                    print("_------------------")
+                    saveFirstAndSign(firstOperand: digitString, sign: "÷")
                 }
             }
-            
-
         }
         return containerVar
     }
@@ -80,8 +60,7 @@ struct Model {
             if operationText == "C" {
                 digitString = ""
                 containerVar = 0
-                tuple.0 = "."
-                tuple.1 = "0"
+                sign = "."
                 count = 0
             }
             
@@ -89,15 +68,9 @@ struct Model {
                 if let digitStringDouble = Double(digitString){
                     let numDisplayed = digitStringDouble * -1
                     digitString = String(numDisplayed)
-//                    containerVar = numDisplayed
-                    print("\(digitString) digit string in +/-")
-                    print("\(containerVar) +/- ")
-//                    containerVar = numDisplayed
-//                    containerVar = digitStringDouble
-                    tuple.1 = digitString
                 } else {
                     digitString = String(containerVar * -1)
-                    tuple.0 = "."
+                    sign = "."
                 }
             }
                 
@@ -109,7 +82,7 @@ struct Model {
                     digitString = String(numDisplayed)
                 } else {
                     digitString = String(containerVar / 100)
-                    tuple.0 = "."
+                    sign = "."
                 }
                 
             }
@@ -127,7 +100,7 @@ struct Model {
         guard digitString != "" else { return containerVar}
         
         // 5 -> = -> it will be zero if i won't do that
-        guard tuple.0 != "." else {
+        guard sign != "." else {
             containerVar = Double(digitString)!
             
             return containerVar
@@ -135,33 +108,26 @@ struct Model {
         }
         count = 0
         
-        if tuple.0 == "+" {
+        if sign == "+" {
             print(digitString)
             containerVar += Double(digitString)!
-            
             digitString = String(containerVar)
             print(containerVar)
-            
-            
         }
         
-        if tuple.0 == "-" {
-            
-            
+        if sign == "-" {
             containerVar -= Double(digitString)!
             digitString = String(containerVar)
-            
-            
         }
         
-        if tuple.0 == "x" {
+        if sign == "x" {
             containerVar *= Double(digitString)!
             digitString = String(containerVar)
         }
         
-        if tuple.0 == "÷" {
-            print("\(digitString) Aaaaa PLEASEEE")
-            print("\(containerVar) AAAAAAAAAA PLEEEEEEEAAAASEEE")
+        if sign == "÷" {
+//            guard digitString != "0" else {digitString = "0"; return 0.0}
+            
             containerVar /= Double(digitString)!
             digitString = String(containerVar)
         }
@@ -179,10 +145,6 @@ struct Model {
             digitString = digitString.replacingOccurrences(of: ",", with: "")
         }
         containerVar = Double(digitString)!
-        print("IN EQUALS")
-        print(containerVar)
-        print("IN EQUALS")
-//        digitString = ""
         return containerVar
     }
     
@@ -195,17 +157,13 @@ struct Model {
         guard indexOfDot == anotherDot else { return numberString}
         if indexOfDot != nil {
             numberStringCopy = String(numberString[indexOfDot!...])
+            print(numberStringCopy)
         } else {
             return numberString
         }
-        if numberString.contains(".") {
-            if numberStringCopy == ".0"{
+        if numberStringCopy == ".0"{
                 numberString.removeSubrange(numberString.firstIndex(of: ".")!..<numberString.endIndex)
-//                containerVar = Double(numberString)!
-//                digitString = numberString
-            }
         }
-        
         
         return numberString
     }
@@ -216,5 +174,11 @@ struct Model {
         } else {
             return true
         }
+    }
+    
+    mutating func saveFirstAndSign(firstOperand: String, sign: String) {
+        containerVar = Double(firstOperand)!
+        digitString = ""
+        self.sign = sign
     }
 }

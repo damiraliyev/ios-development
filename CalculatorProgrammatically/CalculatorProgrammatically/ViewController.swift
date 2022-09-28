@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var model = Model(digitString: "", containerVar: 0, tuple: (".", "0"), count: 0)
+    var model = Model(digitString: "", containerVar: 0, sign: ".", count: 0)
     
     let calcVC = CalculatorViewController()
 
@@ -32,7 +32,6 @@ class ViewController: UIViewController {
         calcVC.didMove(toParent: self)
         
         for button in digitButtons {
-            print(button)
             button.addTarget(self, action: #selector(digitPressed(_:)), for: .primaryActionTriggered)
         }
         
@@ -84,7 +83,6 @@ class ViewController: UIViewController {
     }
     
     @objc func equalsPressed(_ sender: UIButton) {
-        print("HIIIII")
         var result = String(model.calculateResult())
         calcVC.displayLabel.text = model.dealWithDot(numberString: &(result))
     }
