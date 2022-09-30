@@ -66,6 +66,7 @@ extension ProductsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         productViewController.setProductInformation(productName: products[indexPath.row].productName, imageName: products[indexPath.row].fullScreenImage)
         navigationController?.pushViewController(productViewController, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

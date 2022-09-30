@@ -52,6 +52,16 @@ class ViewController: UIViewController {
     }
     
     @objc func digitPressed(_ sender: UIButton) {
+//        guard calcVC.displayLabel.text != "0" && sender.titleLabel?.text != "0" else { return }
+        
+        if sender.titleLabel?.text == "0" && calcVC.displayLabel.text?.first == "0" {
+            return
+        }
+        
+        if calcVC.displayLabel.text == "" && sender.titleLabel?.text == "." {
+            model.digitString += "0."
+            calcVC.displayLabel.text = model.digitString
+        }
         if let titleLableText = sender.titleLabel?.text {
             model.digitString += titleLableText
             calcVC.displayLabel.text = model.digitString

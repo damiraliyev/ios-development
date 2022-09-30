@@ -109,10 +109,10 @@ struct Model {
         count = 0
         
         if sign == "+" {
-            print(digitString)
+//            print(digitString)
             containerVar += Double(digitString)!
             digitString = String(containerVar)
-            print(containerVar)
+//            print(containerVar)
         }
         
         if sign == "-" {
@@ -126,7 +126,7 @@ struct Model {
         }
         
         if sign == "÷" {
-//            guard digitString != "0" else {digitString = "0"; return 0.0}
+            guard digitString != "0" else {digitString = "0"; return 0.0}
             
             containerVar /= Double(digitString)!
             digitString = String(containerVar)
