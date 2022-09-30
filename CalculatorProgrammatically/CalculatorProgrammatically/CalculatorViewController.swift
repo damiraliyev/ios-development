@@ -141,7 +141,6 @@ class CalculatorViewController: UIViewController {
         parentStackViewTopAnchor.isActive = true
     }
     
-
     func showPressedButton(sender: UIButton) {
         sender.alpha = 0.7
         UIView.animate(withDuration: 0.1) {

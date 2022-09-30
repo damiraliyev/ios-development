@@ -66,7 +66,6 @@ class ViewController: UIViewController {
             model.digitString += titleLableText
             calcVC.displayLabel.text = model.digitString
             calcVC.showPressedButton(sender: sender)
-
         }
     }
     
@@ -77,7 +76,6 @@ class ViewController: UIViewController {
         //        model.digitString = result
         calcVC.displayLabel.text = result
         calcVC.showPressedButton(sender: sender)
-   
        }
     
     @objc func oneActionOperationPressed(_ sender: UIButton) {

@@ -113,6 +113,7 @@ struct Model {
             containerVar += Double(digitString)!
             digitString = String(containerVar)
 //            print(containerVar)
+
         }
         
         if sign == "-" {
@@ -145,6 +146,8 @@ struct Model {
             digitString = digitString.replacingOccurrences(of: ",", with: "")
         }
         containerVar = Double(digitString)!
+        //Added this
+        digitString = ""
         return containerVar
     }
     
