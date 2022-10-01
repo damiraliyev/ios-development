@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     var oneActionOperations = [UIButton]()
     var operationButtons = [UIButton]()
     
+    var isEqualsWasPressed = false
     
     override func viewDidLoad() {
         digitButtons += [calcVC.button0, calcVC.button1, calcVC.button2, calcVC.button3, calcVC.button4, calcVC.button5, calcVC.button6, calcVC.button7, calcVC.button8, calcVC.button9]
@@ -62,6 +63,10 @@ class ViewController: UIViewController {
             model.digitString += "0."
             calcVC.displayLabel.text = model.digitString
         }
+        if isEqualsWasPressed {
+            model.digitString = ""
+            isEqualsWasPressed = false
+        }
         if let titleLableText = sender.titleLabel?.text {
             model.digitString += titleLableText
             calcVC.displayLabel.text = model.digitString
@@ -93,6 +98,7 @@ class ViewController: UIViewController {
     @objc func equalsPressed(_ sender: UIButton) {
         var result = String(model.calculateResult())
         calcVC.displayLabel.text = model.dealWithDot(numberString: &(result))
+        isEqualsWasPressed = true
     }
     
   

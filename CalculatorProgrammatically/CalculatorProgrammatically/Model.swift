@@ -17,7 +17,7 @@ struct Model {
     
     mutating func performOperation(_ sender: String?) -> Double {
         count += 1
-        
+
         if count > 1 {
             let result = calculateResult()
             digitString = String(result)
@@ -147,7 +147,8 @@ struct Model {
         }
         containerVar = Double(digitString)!
         //Added this
-        digitString = ""
+        print(sign)
+
         return containerVar
     }
     
